@@ -1,0 +1,18 @@
+  <div *ngIf="product.discount" class="item-medium-1__alert">Sale</div>
+  <div class="item-medium-1__image image" [style.backgroundImage] ="'url('+product.imagesUrls[0]+')'">
+      <a href="#" class="item-medium-1__action" (click)="itemAddedToCart()">Add to Cart</a>
+  </div>
+  <a [routerLink]="['/product','details',product.id]">
+      <h4>{{product.data[0].name}}</h4>
+      <div class="flex-row">
+          <div [ngClass]="{'red':product.price<2000,'green':product.price>2000}" [ngStyle]="{'color':product.price<2000?'red':'green'}">
+              <del *ngIf="product.discount">${{product.discount}}</del>
+              <span class="lable">{{product.price | currency:'USD'}}</span>
+          </div>
+      </div>
+  </a>
+  <div class="crud-actions" >
+      <a href="#"><i class="far fa-eye"></i></a>
+      <a [routerLink]="['/product','edit',product.id]"><i class="fas fa-edit"></i></a>
+      <a><i class="fas fa-trash-alt" (click)="delete(product.id)"></i></a>
+  </div>
